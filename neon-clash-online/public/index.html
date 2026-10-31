@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="theme-color" content="#090d1b">
+  <title>NEON CLASH ONLINE</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="app">
+    <header><h1>NEON CLASH <span>ONLINE</span></h1><p>Real-time 1v1 battles with private room codes</p></header>
+
+    <section id="lobby" class="panel">
+      <h2>Fight a friend</h2>
+      <p class="muted">Create a private room and share its 5-character code.</p>
+      <button id="createBtn" class="primary">Create private room</button>
+      <div class="or">OR JOIN A FRIEND</div>
+      <div class="joinrow">
+        <input id="roomInput" maxlength="5" placeholder="ROOM CODE" autocomplete="off" aria-label="Room code">
+        <button id="joinBtn">Join room</button>
+      </div>
+      <p id="lobbyMessage" class="message" role="status"></p>
+    </section>
+
+    <section id="roomPanel" class="panel hidden">
+      <div class="roomtop">
+        <div><div class="muted small">ROOM CODE</div><div id="roomCode" class="roomcode">-----</div></div>
+        <button id="copyBtn" class="secondary">Copy code</button>
+      </div>
+      <p id="roomStatus" class="message">Waiting for your friend…</p>
+      <div id="playerSlots" class="slots"><span>You: connected</span><span>Opponent: waiting</span></div>
+      <button id="leaveBtn" class="secondary">Leave room</button>
+    </section>
+
+    <section id="gamePanel" class="hidden">
+      <div class="hud">
+        <div class="health"><div class="healthlabel">YOU <b id="youWins">0</b></div><div class="bar"><i id="youHealth"></i></div></div>
+        <div class="round" id="roundLabel">ROUND 1</div>
+        <div class="health right"><div class="healthlabel">FRIEND <b id="friendWins">0</b></div><div class="bar"><i id="friendHealth"></i></div></div>
+      </div>
+      <canvas id="game" width="960" height="500"></canvas>
+      <div id="gameMessage" class="gamemessage">FIGHT!</div>
+      <div class="mobilecontrols">
+        <div class="movecontrols">
+          <button data-control="left" aria-label="Move left">◀</button>
+          <button data-control="right" aria-label="Move right">▶</button>
+          <button data-control="jump" aria-label="Jump">⬆</button>
+          <button data-control="block" aria-label="Block">▣</button>
+        </div>
+        <div class="attackcontrols">
+          <button data-control="punch">PUNCH</button>
+          <button data-control="kick">KICK</button>
+          <button data-control="special" class="special">SPECIAL</button>
+        </div>
+      </div>
+      <div class="desktophelp">Keyboard: A/D move · W jump · S block · J punch · K kick · L special</div>
+      <div class="endactions hidden" id="endActions">
+        <button id="rematchBtn" class="primary">Rematch</button>
+        <button id="backBtn" class="secondary">Back to lobby</button>
+      </div>
+    </section>
+    <footer>NEON CLASH ONLINE · Original browser fighting game</footer>
+  </main>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/client.js"></script>
+</body>
+</html>
